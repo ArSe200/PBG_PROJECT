@@ -20,6 +20,10 @@ let isStop = false;
 let generator;
 let mouse;
 let speed_up = false;
+let price_list = {
+    1: 1000,
+    2: 2000
+}
 
 /* Загрузка лучшего результата из хранилищя браузера */
 let high_score = Number(localStorage.getItem("score"));
@@ -43,7 +47,9 @@ if (skins == null) {
     skins = "0";
     localStorage.setItem("skins", "0");
 }
-skins = skins.split(",")
+skins = skins.split(",");
+document.querySelectorAll('.skin').forEach((but, i) => { if (i > 1 && jQuery.inArray(String(i-1), skins) != -1) document.querySelector("#price_" + (i-1)).remove();
+});
 
 /* Генератор эмигрантов */
 function generateEmigrant() {
@@ -132,7 +138,7 @@ function add_score(amount) {
 
     localStorage.setItem("money", money);
 
-    moneyDisplay.textContent = "Money: " + money;
+    moneyDisplay.textContent = "Money: "+ money;
 }
 
 /* Обработка поражения */
@@ -207,34 +213,48 @@ skinShop.addEventListener("click", (event) => {
 
     /* Открытие магазина */
     $('.skin').css('display', 'flex');
-    moneyDisplay2.textContent = "Money: " + money;
+    moneyDisplay2.textContent = money;
 
 });
 
 /* Обработка кнопок в магазине */
 function skin_buttons_handler(event) {
-    but_id = event.srcElement.id;
-    let selected_skin_old = selected_skin;
-    selected_skin = but_id[but_id.length - 1]
-    if (Number(selected_skin) > 0 || Number(selected_skin) < 3) {
+    let but_id = event.srcElement.id;
+    but_id = but_id[but_id.length - 1]
+    if (jQuery.inArray(but_id, skins) != -1) {
+        let selected_skin_old = selected_skin;
+        selected_skin = but_id;
         localStorage.setItem("skin", selected_skin);
         skin_object.setAttribute("src", `skins/skin_${selected_skin}.png`)
-        document.querySelector("#skin_n_"+selected_skin_old).classList.remove("choosedSkin");
-        document.querySelector("#skin_n_"+selected_skin).classList.add("choosedSkin");
+        document.querySelector("#skin_n_" + selected_skin_old).classList.remove("choosedSkin");
+        document.querySelector("#skin_n_" + selected_skin).classList.add("choosedSkin");
+
+        /* Закрытие магазина */
+        $('.skin').css('display', 'none');
+
+        click_sound.play()
+
+        /* Разворачивание игры */
+        gameOver.style.display = "block";
+        retryButton.style.display = "block";
+        skinShop.style.display = "block";
+        scoreDisplay.style.display = "block";
+        highScoreDisplay.style.display = "block";
+        moneyDisplay.style.display = "block";
     }
-
-    /* Закрытие магазина */
-    $('.skin').css('display', 'none');
-
-    click_sound.play()
-
-    /* Разворачивание игры */
-    gameOver.style.display = "block";
-    retryButton.style.display = "block";
-    skinShop.style.display = "block";
-    scoreDisplay.style.display = "block";
-    highScoreDisplay.style.display = "block";
-    moneyDisplay.style.display = "block";
+    else {
+        but_id = Number(but_id)
+        if (money >= price_list[but_id]) {
+            money -= price_list[but_id];
+            localStorage.setItem("money", money);
+            moneyDisplay.textContent = "Money: " + money
+            moneyDisplay2.textContent = money
+            document.querySelector("#price_" + but_id).remove()
+            skins.push(String(but_id));
+            localStorage.setItem("skins", localStorage.getItem("skins") + "," + but_id)
+        }
+        else lose_sound.play();
+    }
 }
 
 document.querySelectorAll('.skin').forEach((but, i) => { if (i > 0) but.addEventListener("click", skin_buttons_handler) });

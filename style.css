@@ -214,13 +214,13 @@ body {
 }
 
 .skin_preview {
+  pointer-events: none;
   width: 15%;
   margin-left: 5%;
   margin-right: 5%;
 }
 
-#moneyDisplay2 {
-  text-align: center;
+#moneyDisplay2Conteiner {
   justify-content: center;
   font-size: 4vh;
   color: rgb(255, 255, 255);
@@ -229,6 +229,7 @@ body {
 
 .zloty{
   height: 3vh;
+  margin-left: 1vw;
 }
 
 .choosedSkin {
