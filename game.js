@@ -206,7 +206,7 @@ skinShop.addEventListener("click", (event) => {
     moneyDisplay.style.display = "none";
 
     /* Открытие магазина */
-    $('.skin').css('display', 'block');
+    $('.skin').css('display', 'flex');
     moneyDisplay2.textContent = "Money: " + money;
 
 });

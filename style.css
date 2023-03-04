@@ -205,7 +205,7 @@ body {
   background-color: rgb(252, 22, 31);;
   align-self: center;
   box-shadow: 0rem 0rem 2rem 0.4rem black;
-  display: flex;
+  display: none;
   align-items: center;
   text-align: left;
   font-size: 4vh;
@@ -216,6 +216,7 @@ body {
 .skin_preview {
   width: 15%;
   margin-left: 5%;
+  margin-right: 5%;
 }
 
 #moneyDisplay2 {
@@ -223,4 +224,8 @@ body {
   font-size: 4vh;
   color: rgb(255, 255, 255);
   text-shadow: 0 0 2rem black;
+}
+
+.zloty{
+  height: 3vh;
 }
