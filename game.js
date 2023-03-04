@@ -206,3 +206,5 @@ skinShop.addEventListener("click", (event) => {
     moneyDisplay2.textContent = "Money: " + money;
 
 });
+
+/* Sync test */
