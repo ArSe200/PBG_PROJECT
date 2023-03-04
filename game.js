@@ -225,7 +225,7 @@ function skin_buttons_handler(event) {
 
     click_sound.play()
 
-    /* Сворачивание игры */
+    /* Разворачивание игры */
     gameOver.style.display = "block";
     retryButton.style.display = "block";
     skinShop.style.display = "block";
