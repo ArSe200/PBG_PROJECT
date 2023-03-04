@@ -214,10 +214,13 @@ skinShop.addEventListener("click", (event) => {
 /* Обработка кнопок в магазине */
 function skin_buttons_handler(event) {
     but_id = event.srcElement.id;
-    but_id = but_id[but_id.length - 1]
-    if (Number(but_id) > 0 || Number(but_id) < 3) {
-        localStorage.setItem("skin", but_id);
-        skin_object.setAttribute("src", `skins/skin_${but_id}.png`)
+    let selected_skin_old = selected_skin;
+    selected_skin = but_id[but_id.length - 1]
+    if (Number(selected_skin) > 0 || Number(selected_skin) < 3) {
+        localStorage.setItem("skin", selected_skin);
+        skin_object.setAttribute("src", `skins/skin_${selected_skin}.png`)
+        document.querySelector("#skin_n_"+selected_skin_old).classList.remove("choosedSkin");
+        document.querySelector("#skin_n_"+selected_skin).classList.add("choosedSkin");
     }
 
     /* Закрытие магазина */

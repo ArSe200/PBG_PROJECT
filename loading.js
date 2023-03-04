@@ -17,6 +17,7 @@ if (selected_skin == null || selected_skin<0 || selected_skin>2) {
     localStorage.setItem("skin", 0);
 }
 skin_object.setAttribute("src", `skins/skin_${selected_skin}.png`)
+document.querySelector("#skin_n_"+selected_skin).classList.add("choosedSkin");
 
 
 /* Функция обработки экрана загрузки */

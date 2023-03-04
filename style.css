@@ -202,7 +202,7 @@ body {
 
 .skin {
   display: none;
-  background-color: rgb(252, 22, 31);;
+  background-color: rgb(252, 22, 31);
   align-self: center;
   box-shadow: 0rem 0rem 2rem 0.4rem black;
   display: none;
@@ -221,6 +221,7 @@ body {
 
 #moneyDisplay2 {
   text-align: center;
+  justify-content: center;
   font-size: 4vh;
   color: rgb(255, 255, 255);
   text-shadow: 0 0 2rem black;
@@ -228,4 +229,8 @@ body {
 
 .zloty{
   height: 3vh;
+}
+
+.choosedSkin {
+  background-color: rgb(116, 0, 4) !important;
 }
