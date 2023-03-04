@@ -36,10 +36,14 @@ if (money == null) {
     localStorage.setItem("money", 0);
 }
 moneyDisplay.textContent = "Money: " + money;
-console.log(money);
 
 /* Загрузка купленных скинов */
-
+let skins = localStorage.getItem("skins");
+if (skins == null) {
+    skins = "0";
+    localStorage.setItem("skins", "0");
+}
+skins = skins.split(",")
 
 /* Генератор эмигрантов */
 function generateEmigrant() {
@@ -47,14 +51,14 @@ function generateEmigrant() {
         /* Обределение типа эмигранта 
         (шанс на зеленого - 10%) */
 
-        let is_green = Math.random()>0.9 ? true : false;
+        let is_green = Math.random() > 0.9 ? true : false;
 
         /* Создание нового эмигранта */
         const emigrant = document.createElement("div");
         emigrant.style.left = Math.random() * (game.clientWidth - 50) + "px";
         emigrant.style.top = "0px";
         if (is_green) emigrant.classList.add("emigrant_green");
-        else   emigrant.classList.add("emigrant");
+        else emigrant.classList.add("emigrant");
         game.appendChild(emigrant);
 
         /* Добавление обработчика движения эмигранта */
@@ -72,7 +76,7 @@ function generateEmigrant() {
 
                 /* Проверка попадания спецназа по эмигранту */
                 if (checkCollision(emigrant, player)) {
-                    if (!is_green){
+                    if (!is_green) {
                         /* Увеличение счета */
                         add_score(1);
 
@@ -106,9 +110,9 @@ function generateEmigrant() {
 
 /* Начисление очков */
 function add_score(amount) {
-    score+=amount;
-    
-    if (score>150 && speed_up == false) {
+    score += amount;
+
+    if (score > 150 && speed_up == false) {
         speed_up = true;
         clearInterval(generator);
         generator = setInterval(generateEmigrant, 1000);
@@ -124,7 +128,7 @@ function add_score(amount) {
     score_sound.play()
 
     /* Начисление монет */
-    money+=1;
+    money += 1;
 
     localStorage.setItem("money", money);
 
@@ -207,3 +211,27 @@ skinShop.addEventListener("click", (event) => {
 
 });
 
+/* Обработка кнопок в магазине */
+function skin_buttons_handler(event) {
+    but_id = event.srcElement.id;
+    but_id = but_id[but_id.length - 1]
+    if (Number(but_id) > 0 || Number(but_id) < 3) {
+        localStorage.setItem("skin", but_id);
+        skin_object.setAttribute("src", `skins/skin_${but_id}.png`)
+    }
+
+    /* Закрытие магазина */
+    $('.skin').css('display', 'none');
+
+    click_sound.play()
+
+    /* Сворачивание игры */
+    gameOver.style.display = "block";
+    retryButton.style.display = "block";
+    skinShop.style.display = "block";
+    scoreDisplay.style.display = "block";
+    highScoreDisplay.style.display = "block";
+    moneyDisplay.style.display = "block";
+}
+
+document.querySelectorAll('.skin').forEach((but, i) => { if (i > 0) but.addEventListener("click", skin_buttons_handler) });
