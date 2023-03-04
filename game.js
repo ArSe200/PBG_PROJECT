@@ -207,4 +207,3 @@ skinShop.addEventListener("click", (event) => {
 
 });
 
-/* Sync test */
