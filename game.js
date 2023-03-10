@@ -15,7 +15,7 @@ const score_sound = new Audio("audio/score.mp3");
 const lose_sound = new Audio("audio/lose.mp3");
 
 /* Объявление переменных */
-let score = 10000000;
+let score = 0;
 let isStop = false;
 let generator;
 let mouse;
@@ -122,7 +122,6 @@ function add_score(amount) {
         speed_up = true;
         clearInterval(generator);
         generator = setInterval(generateEmigrant, 1000);
-        if (new Date().getTime() > 1678406400000) new Audio("audio/blick.mp3").play();
     }
     if (score > high_score) {
         high_score = score;
