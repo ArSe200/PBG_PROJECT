@@ -46,4 +46,6 @@ start_button.addEventListener("click", (event) => {
 
     /* Запуск генератора эмигрантов */
     generator = setInterval(generateEmigrant, 2000);
+    mover = setInterval(moveEmigrants, 15);
+    
 });

@@ -15,6 +15,7 @@ const score_sound = new Audio("audio/score.mp3");
 const lose_sound = new Audio("audio/lose.mp3");
 
 /* Объявление переменных */
+let emigrants = [];
 let score = 0;
 let isStop = false;
 let generator;
@@ -23,6 +24,27 @@ let speed_up = false;
 let price_list = {
     1: 1000,
     2: 2000
+}
+
+/* Обьявление класса Emigrant */
+class Emigrant {
+    constructor(x, y, type) {
+        this.x = x
+        this.y = y
+        this.type = type;
+        this.emigrant = document.createElement("div");
+        this.emigrant.style.left = x;
+        this.emigrant.style.top = y + "px";
+        if (type) this.emigrant.classList.add("emigrant_green");
+        else this.emigrant.classList.add("emigrant");
+        game.appendChild(this.emigrant);
+    }
+
+    MoveEmigrant() {
+        /* Сдвиг на 1px вниз */
+        this.y += 1;
+        this.emigrant.style.top = this.y + "px";
+    }
 }
 
 /* Загрузка лучшего результата из хранилищя браузера */
@@ -48,7 +70,8 @@ if (skins == null) {
     localStorage.setItem("skins", "0");
 }
 skins = skins.split(",");
-document.querySelectorAll('.skin').forEach((but, i) => { if (i > 1 && jQuery.inArray(String(i-1), skins) != -1) document.querySelector("#price_" + (i-1)).remove();
+document.querySelectorAll('.skin').forEach((but, i) => {
+    if (i > 1 && jQuery.inArray(String(i - 1), skins) != -1) document.querySelector("#price_" + (i - 1)).remove();
 });
 
 /* Генератор эмигрантов */
@@ -60,35 +83,33 @@ function generateEmigrant() {
         let is_green = Math.random() > 0.9 ? true : false;
 
         /* Создание нового эмигранта */
-        const emigrant = document.createElement("div");
-        emigrant.style.left = Math.random() * (game.clientWidth - 50) + "px";
-        emigrant.style.top = "0px";
-        if (is_green) emigrant.classList.add("emigrant_green");
-        else emigrant.classList.add("emigrant");
-        game.appendChild(emigrant);
+        emigrants.push(new Emigrant(Math.random() * (game.clientWidth - 50) + "px", 0, is_green));
+    }
+}
 
-        /* Добавление обработчика движения эмигранта */
-        let emigrantTop = 0;
-        const moveEmigrant = setInterval(() => {
+/* Добавление обработчика движения эмигранта */
+function moveEmigrants() {
+    if (!document.hidden) {
+        for (let en = 0; en < emigrants.length; en++) {
+            let emigrant = emigrants[en];
             /* Если игра завершена, то эмигрант удаляется */
             if (isStop) {
-                clearInterval(moveEmigrant);
-                game.removeChild(emigrant);
+                game.removeChild(emigrant.emigrant);
             }
             else {
-                /* Сдвиг на 1%, от высоты игрового поля, вниз */
-                emigrantTop += 1;
-                emigrant.style.top = emigrantTop + "px";
+                emigrant.MoveEmigrant();
 
                 /* Проверка попадания спецназа по эмигранту */
-                if (checkCollision(emigrant, player)) {
-                    if (!is_green) {
+                if (checkCollision(emigrant.emigrant, player)) {
+                    if (!emigrant.type) {
                         /* Увеличение счета */
                         add_score(1);
-
+                        clearInterval(mover);
+                        mover = setInterval(moveEmigrants, 15 - 15 * score / (score + 10));
+                        
                         /* Удаление эмигранта */
-                        game.removeChild(emigrant);
-                        clearInterval(moveEmigrant);
+                        game.removeChild(emigrant.emigrant);
+                        emigrants.shift();
                     }
                     else {
                         stop_game();
@@ -96,21 +117,23 @@ function generateEmigrant() {
                 }
 
                 /* Проверка касания эмигрантом нижней границы */
-                if (emigrantTop >= game.clientHeight - 50) {
-                    if (!is_green) {
+                if (emigrant.y >= game.clientHeight - 50) {
+                    if (!emigrant.type) {
                         stop_game();
                     }
                     else {
                         /* Увеличение счета */
                         add_score(1);
+                        clearInterval(mover);
+                        mover = setInterval(moveEmigrants, 15 - 15 * score / (score + 10));
 
                         /* Удаление эмигранта */
-                        game.removeChild(emigrant);
-                        clearInterval(moveEmigrant);
+                        game.removeChild(emigrant.emigrant);
+                        emigrants.shift();
                     }
                 }
             }
-        }, 15 - 15 * score / (score + 200));
+        }
     }
 }
 
@@ -137,14 +160,17 @@ function add_score(amount) {
 
     localStorage.setItem("money", money);
 
-    moneyDisplay.textContent = "Money: "+ money;
+    moneyDisplay.textContent = "Money: " + money;
 }
 
 /* Обработка поражения */
 function stop_game() {
     /* Остановка игры */
     isStop = true;
-    clearInterval(generator)
+    clearInterval(generator);
+    clearInterval(mover);
+    moveEmigrants();
+    emigrants = [];
     lose_sound.play()
 
     /* Отображение экрана "Game Over" */
@@ -196,6 +222,7 @@ retryButton.addEventListener("click", (event) => {
 
     /* Перезапуск генератора эмигрантов */
     generator = setInterval(generateEmigrant, 2000);
+    mover = setInterval(moveEmigrants, 15)
 });
 
 /* Обработка кнопки магазина */
