@@ -105,7 +105,7 @@ function moveEmigrants() {
                         /* Увеличение счета */
                         add_score(1);
                         clearInterval(mover);
-                        mover = setInterval(moveEmigrants, 15 - 15 * score / (score + 10));
+                        mover = setInterval(moveEmigrants, 15 - 15 * score / (score + 100));
                         
                         /* Удаление эмигранта */
                         game.removeChild(emigrant.emigrant);
@@ -125,7 +125,7 @@ function moveEmigrants() {
                         /* Увеличение счета */
                         add_score(1);
                         clearInterval(mover);
-                        mover = setInterval(moveEmigrants, 15 - 15 * score / (score + 10));
+                        mover = setInterval(moveEmigrants, 15 - 15 * score / (score + 100));
 
                         /* Удаление эмигранта */
                         game.removeChild(emigrant.emigrant);
@@ -284,3 +284,5 @@ function skin_buttons_handler(event) {
 }
 
 document.querySelectorAll('.skin').forEach((but, i) => { if (i > 0) but.addEventListener("click", skin_buttons_handler) });
+
+//Branche test
