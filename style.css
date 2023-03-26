@@ -61,29 +61,38 @@ body {
 
 /* Игровое поле */
 
-#main_field {
-  background-color: red;
-  width: 100%;
-  height: 0;
-  padding-top: 50%;
+@media (max-aspect-ratio:16/7){
+  #main_field  {
+      width: 100vw;
+      height: auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      aspect-ratio: 16 / 7;
+  }
+}
+
+@media (min-aspect-ratio:16/7){
+  #main_field  {
+      width: auto;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      aspect-ratio: 16 / 7;
+  }
 }
 
 #game {
-  background-color: transparent;
+  background: url("images/grass_block_top.png");
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 15%;
-  left: 10%;
-}
-
-#game_background {
-  background: url("images/grass_block_top.png");
-  width: 90%;
-  height: 80%;
-  position: absolute;
-  top: 10%;
-  left: 5%;
 }
 
 .tree {
@@ -104,8 +113,10 @@ body {
 .emigrant {
   z-index: 2;
   background: url("images/migrant.gif");
-  width: 50px;
-  height: 50px;
+  background-size: 100% auto;
+  width: 2%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   position: absolute;
   top: 0px;
 }
@@ -114,7 +125,6 @@ body {
   z-index: 2;
   background: url("images/migrant_green.gif");
   width: 50px;
-  height: 50px;
   position: absolute;
   top: 0px;
 }
@@ -129,7 +139,7 @@ body {
   display: block;
 }
 
-#scoreboard {
+#scoreboard_text {
   z-index: 9990;
   position: absolute;
   margin-top: 0.2em;
@@ -140,30 +150,9 @@ body {
   text-shadow: 2px 2px 1px black;
 }
 
-#scoreboard_high {
-  z-index: 9990;
-  position: absolute;
-  right: 2%;
-  margin-top: 2.5em;
-  display: block;
-  font-size: 3rem;
-  color: rgb(252, 22, 31);
-  text-shadow: 2px 2px 1px black;
-}
-
-#moneyDisplay {
-  z-index: 9990;
-  position: absolute;
-  right: 2%;
-  margin-top: 3.5em;
-  display: block;
-  font-size: 3rem;
-  color: rgb(252, 22, 31);
-  text-shadow: 2px 2px 1px black;
-}
 
 /* Экран "Game Over" */
-#game-over {
+#game_over {
   width: 35%;
   position: absolute;
   top: 35%;

@@ -42,8 +42,8 @@ class Emigrant {
 
     MoveEmigrant() {
         /* Сдвиг на 1px вниз */
-        this.y += 1;
-        this.emigrant.style.top = this.y + "px";
+        this.y += 0.1;
+        this.emigrant.style.top = this.y + "vh";
     }
 }
 
@@ -83,7 +83,7 @@ function generateEmigrant() {
         let is_green = Math.random() > 0.9 ? true : false;
 
         /* Создание нового эмигранта */
-        emigrants.push(new Emigrant(Math.random() * (game.clientWidth - 50) + "px", 0, is_green));
+        emigrants.push(new Emigrant(Math.random() * 95 + "%", 0, is_green));
     }
 }
 
