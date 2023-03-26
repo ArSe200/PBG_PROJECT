@@ -1,0 +1,12 @@
+#test_rect {
+    width: 100vw;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    aspect-ratio: 16 / 7;
+    background-color: red;
+}

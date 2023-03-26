@@ -1,6 +1,4 @@
 body {
-  background-image: url("images/small_map.png");
-
   /* Запрет на выделение */
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -63,10 +61,17 @@ body {
 
 /* Игровое поле */
 
+#main_field {
+  background-color: red;
+  width: 100%;
+  height: 0;
+  padding-top: 50%;
+}
+
 #game {
   background-color: transparent;
-  width: 80%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 15%;
   left: 10%;
