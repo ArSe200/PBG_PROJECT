@@ -73,6 +73,19 @@ body {
       margin: auto;
       aspect-ratio: 16 / 7;
   }
+
+  .scoreboard_text {
+    font-size: 3vw;
+    -webkit-text-stroke: 0.05vw #000;
+    text-stroke: 0.05vw #000;
+  }
+
+  #scoreboard_main {
+    font-size: 6vw;
+    margin-bottom: 3vw;
+    -webkit-text-stroke: 0.1vw #000;
+    text-stroke: 0.1vw #000;
+  }
 }
 
 @media (min-aspect-ratio:16/7){
@@ -86,6 +99,19 @@ body {
       right: 0;
       margin: auto;
       aspect-ratio: 16 / 7;
+  }
+
+  .scoreboard_text {
+    font-size: 6.86vh;
+    -webkit-text-stroke: 0.114vh #000;
+    text-stroke: 0.114vh #000;    
+  }
+  
+  #scoreboard_main {
+    font-size: 13.71vh;
+    margin-bottom: 6.86vh;
+    -webkit-text-stroke: 0.229vh #000;
+    text-stroke: 0.229vh #000;
   }
 }
 
@@ -104,7 +130,7 @@ body {
 
 #border_line {
   z-index: 1;
-  border: 5px dashed red;
+  border: 0.5vh dashed red;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -118,40 +144,63 @@ body {
   height: auto;
   aspect-ratio: 1 / 1;
   position: absolute;
-  top: 0px;
+  top: 0%;
 }
 
 .emigrant_green {
   z-index: 2;
   background: url("images/migrant_green.gif");
-  width: 50px;
+  background-size: 100% auto;
+  width: 2%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   position: absolute;
-  top: 0px;
+  top: 0%;
 }
 
 #player {
   z-index: 2;
-  width: 200px;
-  height: 50px;
+  width: 10%;
+  height: auto;
   position: absolute;
-  bottom: -0;
+  bottom: 0;
   left: 0;
   display: block;
+  transform: translateX(-50%);
 }
 
-#scoreboard_text {
-  z-index: 9990;
+#scoreboard{
+  /* background-color: rgb(0, 255, 183); */
   position: absolute;
-  margin-top: 0.2em;
-  right: 2%;
-  display: block;
-  font-size: 5rem;
-  color: rgb(252, 22, 31);
-  text-shadow: 2px 2px 1px black;
+  display: grid;
+  width: 40%;
+  height: 40%;
+  top: 0;
+  right: 0;
+  padding-right: 1%;
+  padding-top: 1%;
 }
 
+.scoreboard_text {
+  /* background-color: rgb(255, 191, 0); */
+  height: auto;
+  z-index: 9990;
+  display: block;
+  align-self: center;
+  text-align: right;
+  color: rgb(252, 22, 31);
+} 
 
 /* Экран "Game Over" */
+
+#game_over_screen {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
 #game_over {
   width: 35%;
   position: absolute;
@@ -199,7 +248,6 @@ body {
   background-color: rgb(252, 22, 31);
   align-self: center;
   box-shadow: 0rem 0rem 2rem 0.4rem black;
-  display: none;
   align-items: center;
   text-align: left;
   font-size: 4vh;

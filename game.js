@@ -1,9 +1,9 @@
 /* Подключение DOM обьектов к скрипту*/
 const game = document.querySelector("#game");
 const player = document.querySelector("#player");
-const scoreDisplay = document.querySelector("#scoreboard");
+const scoreDisplay = document.querySelector("#scoreboard_main");
 const highScoreDisplay = document.querySelector("#scoreboard_high");
-const gameOver = document.querySelector("#game-over");
+const gameOver = document.querySelector("#game_over");
 const retryButton = document.querySelector("#retry_button_frame");
 const skinShop = document.querySelector("#skin_shop");
 const borderLine = document.querySelector("#border_line");
@@ -34,16 +34,16 @@ class Emigrant {
         this.type = type;
         this.emigrant = document.createElement("div");
         this.emigrant.style.left = x;
-        this.emigrant.style.top = y + "px";
+        this.emigrant.style.top = y + "%";
         if (type) this.emigrant.classList.add("emigrant_green");
         else this.emigrant.classList.add("emigrant");
         game.appendChild(this.emigrant);
     }
 
     MoveEmigrant() {
-        /* Сдвиг на 1px вниз */
+        /* Сдвиг на 0.1% вниз */
         this.y += 0.1;
-        this.emigrant.style.top = this.y + "vh";
+        this.emigrant.style.top = this.y + "%";
     }
 }
 
@@ -117,7 +117,7 @@ function moveEmigrants() {
                 }
 
                 /* Проверка касания эмигрантом нижней границы */
-                if (emigrant.y >= game.clientHeight - 50) {
+                if (emigrant.y >= 97) {
                     if (!emigrant.type) {
                         stop_game();
                     }
@@ -196,13 +196,22 @@ function checkCollision(a, b) {
     );
 }
 
-/* Обработка движений мыши */
+/* Обработка движений мыши и точскина*/
+touch = document.addEventListener("touchmove", (event) => {
+    if (!isStop) {
+        /* Смещение игрока в зависимости от положения мыши с учетом краев экрана */
+        xPos = event.changedTouches[0].clientX;
+        var doc_width = document.documentElement.clientWidth;
+
+        if (xPos > doc_width*0.05 && xPos < doc_width*0.95) player.style.left = xPos/doc_width*100 + "%";
+    }  
+});
+
 mouse = document.addEventListener("mousemove", (event) => {
     if (!isStop) {
         /* Смещение игрока в зависимости от положения мыши с учетом краев экрана */
-        if (event.clientX > document.documentElement.clientWidth * 0.1 + 100 && event.clientX < document.documentElement.clientWidth * 0.9 - 100) player.style.left = (event.clientX - document.documentElement.clientWidth * 0.1 - 100) + "px";
-        else if (event.clientX < document.documentElement.clientWidth * 0.1 + 100) player.style.left = 0 + "px";
-        else player.style.left = document.documentElement.clientWidth * 0.8 - 200 + "px";
+        var doc_width = document.documentElement.clientWidth;
+        if (event.clientX > doc_width*0.05 && event.clientX < doc_width*0.95) player.style.left = event.clientX/doc_width*100 + "%";
     }
 });
 
@@ -284,5 +293,3 @@ function skin_buttons_handler(event) {
 }
 
 document.querySelectorAll('.skin').forEach((but, i) => { if (i > 0) but.addEventListener("click", skin_buttons_handler) });
-
-//Branche test
