@@ -26,7 +26,7 @@ body {
   }
 
   .skin {
-    font-size: 5vw;
+    font-size: 4vw;
     -webkit-text-stroke: 0.1vw #000;
     text-stroke: 0.1vw #000;
   }
@@ -277,10 +277,12 @@ body {
 }
 
 #moneyDisplay2Conteiner {
+  pointer-events: none;
   justify-content: center;
 }
 
 .zloty{
+  pointer-events: none;
   width: 5%;
   margin-left: 2%;
 }

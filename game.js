@@ -117,7 +117,7 @@ function moveEmigrants() {
                 }
 
                 /* Проверка касания эмигрантом нижней границы */
-                if (emigrant.y >= 97) {
+                if (emigrant.y >= 100) {
                     if (!emigrant.type) {
                         stop_game();
                     }
