@@ -24,6 +24,18 @@ body {
     -webkit-text-stroke: 0.1vw #000;
     text-stroke: 0.1vw #000;
   }
+
+  .skin {
+    font-size: 5vw;
+    -webkit-text-stroke: 0.1vw #000;
+    text-stroke: 0.1vw #000;
+  }
+
+  #shop_buttons {
+    -webkit-text-stroke: 0.1vw #000;
+    text-stroke: 0.1vw #000;
+    gap: 1vw;
+  }
 }
 
 @media (min-aspect-ratio:16/7){
@@ -40,9 +52,19 @@ body {
   
   #scoreboard_main {
     font-size: 13.71vh;
-    margin-bottom: 6.86vh;
     -webkit-text-stroke: 0.229vh #000;
     text-stroke: 0.229vh #000;
+  }
+
+  .skin {
+    font-size: 11.43vh;
+    -webkit-text-stroke: 0.1vh #000;
+    text-stroke: 0.1vh #000;
+  }
+  #shop_buttons {
+    -webkit-text-stroke: 0.1vh #000;
+    text-stroke: 0.1vh #000;
+    gap: 2.29vh;
   }
 }
 
@@ -235,8 +257,6 @@ body {
   height: 60%;
   top: 20%;
   right: 25%;
-  gap: 1rem;
-  padding: 1rem;
 }
 
 .skin {
@@ -246,28 +266,23 @@ body {
   box-shadow: 0rem 0rem 2rem 0.4rem black;
   align-items: center;
   text-align: left;
-  font-size: 4vh;
   color: rgb(255, 255, 255);
-  text-shadow: 0 0 2rem black;
 }
 
 .skin_preview {
   pointer-events: none;
-  width: 15%;
+  width: 10%;
   margin-left: 5%;
   margin-right: 5%;
 }
 
 #moneyDisplay2Conteiner {
   justify-content: center;
-  font-size: 4vh;
-  color: rgb(255, 255, 255);
-  text-shadow: 0 0 2rem black;
 }
 
 .zloty{
-  height: 3vh;
-  margin-left: 1vw;
+  width: 5%;
+  margin-left: 2%;
 }
 
 .choosedSkin {
