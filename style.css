@@ -6,6 +6,47 @@ body {
   user-select: none;
 }
 
+@media (max-aspect-ratio:16/7){
+  #main_field  {
+      width: 100vw;
+      height: auto;
+  }
+
+  .scoreboard_text {
+    font-size: 3vw;
+    -webkit-text-stroke: 0.05vw #000;
+    text-stroke: 0.05vw #000;
+  }
+
+  #scoreboard_main {
+    font-size: 6vw;
+    margin-bottom: 3vw;
+    -webkit-text-stroke: 0.1vw #000;
+    text-stroke: 0.1vw #000;
+  }
+}
+
+@media (min-aspect-ratio:16/7){
+  #main_field  {
+      width: auto;
+      height: 100vh;
+  }
+
+  .scoreboard_text {
+    font-size: 6.86vh;
+    -webkit-text-stroke: 0.114vh #000;
+    text-stroke: 0.114vh #000;    
+  }
+  
+  #scoreboard_main {
+    font-size: 13.71vh;
+    margin-bottom: 6.86vh;
+    -webkit-text-stroke: 0.229vh #000;
+    text-stroke: 0.229vh #000;
+  }
+}
+
+
 /* Экран загрузки */
 #loading_screen {
   z-index: 9997;
@@ -60,59 +101,14 @@ body {
 }
 
 /* Игровое поле */
-
-@media (max-aspect-ratio:16/7){
-  #main_field  {
-      width: 100vw;
-      height: auto;
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin: auto;
-      aspect-ratio: 16 / 7;
-  }
-
-  .scoreboard_text {
-    font-size: 3vw;
-    -webkit-text-stroke: 0.05vw #000;
-    text-stroke: 0.05vw #000;
-  }
-
-  #scoreboard_main {
-    font-size: 6vw;
-    margin-bottom: 3vw;
-    -webkit-text-stroke: 0.1vw #000;
-    text-stroke: 0.1vw #000;
-  }
-}
-
-@media (min-aspect-ratio:16/7){
-  #main_field  {
-      width: auto;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin: auto;
-      aspect-ratio: 16 / 7;
-  }
-
-  .scoreboard_text {
-    font-size: 6.86vh;
-    -webkit-text-stroke: 0.114vh #000;
-    text-stroke: 0.114vh #000;    
-  }
-  
-  #scoreboard_main {
-    font-size: 13.71vh;
-    margin-bottom: 6.86vh;
-    -webkit-text-stroke: 0.229vh #000;
-    text-stroke: 0.229vh #000;
-  }
+#main_field  {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  aspect-ratio: 16 / 7;
 }
 
 #game {
