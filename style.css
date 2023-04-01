@@ -303,3 +303,27 @@ body {
 .choosedSkin {
   background-color: rgb(116, 0, 4) !important;
 }
+
+/* Джойстик */
+#Touch_point {
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  height: 100%;
+  width: auto;
+  aspect-ratio: 1 / 1;
+
+}
+
+#Touch_field {
+  display: none;
+  position: absolute;
+  border-style: solid;
+  border-color: black;
+  border-radius: 20%/100%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  height: auto;
+  aspect-ratio: 5 / 1;
+}

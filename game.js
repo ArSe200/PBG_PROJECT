@@ -1,4 +1,5 @@
 /* Подключение DOM обьектов к скрипту*/
+const field = document.querySelector("#main_field");
 const game = document.querySelector("#game");
 const player = document.querySelector("#player");
 const scoreDisplay = document.querySelector("#scoreboard_main");
@@ -9,6 +10,8 @@ const skinShop = document.querySelector("#skin_shop");
 const borderLine = document.querySelector("#border_line");
 const moneyDisplay = document.querySelector("#moneyDisplay");
 const moneyDisplay2 = document.querySelector("#moneyDisplay2");
+const pointer = document.querySelector("#Touch_point");
+const touch_field = document.querySelector("#Touch_field")
 
 /* Добавление звуков */
 const score_sound = new Audio("audio/score.mp3");
@@ -19,12 +22,12 @@ let emigrants = [];
 let score = 0;
 let isStop = false;
 let generator;
-let mouse;
 let speed_up = false;
 let price_list = {
     1: 1000,
     2: 2000
 }
+let player_Xpos = 0;
 
 /* Обьявление класса Emigrant */
 class Emigrant {
@@ -106,7 +109,7 @@ function moveEmigrants() {
                         add_score(1);
                         clearInterval(mover);
                         mover = setInterval(moveEmigrants, 15 - 15 * score / (score + 100));
-                        
+
                         /* Удаление эмигранта */
                         game.removeChild(emigrant.emigrant);
                         emigrants.shift();
@@ -196,24 +199,72 @@ function checkCollision(a, b) {
     );
 }
 
-/* Обработка движений мыши и точскина*/
-touch = document.addEventListener("touchmove", (event) => {
-    if (!isStop) {
-        /* Смещение игрока в зависимости от положения мыши с учетом краев экрана */
-        xPos = event.changedTouches[0].clientX;
-        var doc_width = document.documentElement.clientWidth;
-
-        if (xPos > doc_width*0.05 && xPos < doc_width*0.95) player.style.left = xPos/doc_width*100 + "%";
-    }  
-});
-
-mouse = document.addEventListener("mousemove", (event) => {
-    if (!isStop) {
-        /* Смещение игрока в зависимости от положения мыши с учетом краев экрана */
-        var doc_width = document.documentElement.clientWidth;
-        if (event.clientX > doc_width*0.05 && event.clientX < doc_width*0.95) player.style.left = event.clientX/doc_width*100 + "%";
+/* Обработка движений мыши */
+field.addEventListener("mousemove", (event) => {
+    if (!isStop && !event.sourceCapabilities.firesTouchEvents) {
+        let filed_width = field.clientWidth;
+        let realX = event.clientX - (document.documentElement.clientWidth - filed_width) / 2;
+        if (realX < filed_width * 0.05) player_Xpos = 5;
+        else if (realX > filed_width * 0.95) player_Xpos = 95;
+        else player_Xpos = realX / filed_width * 100;
+        player.style.left = player_Xpos + "%";
     }
 });
+
+/* Обработка тачскрина */
+let start_pos_x;
+let shift_x = 0;
+let shift_y = 0;
+let t_mover = 0;
+let t_mover_speed = 0;
+
+document.addEventListener("touchmove", (event) => {
+    if (!isStop) {
+        let xPos = event.changedTouches[0].clientX;
+        let realPos = xPos - start_pos_x;
+        let pPos = 50 + (realPos / (touch_field.clientWidth)) * 100;
+        if (pPos < 10) {
+            pointer.style.left = "10%";
+            t_mover_speed = -1;
+        }
+        else if (pPos > 90) {
+            pointer.style.left = "90%";
+            t_mover_speed = 1;
+        }
+        else {
+            pointer.style.left = pPos + "%";
+            if (realPos>0) t_mover_speed = Math.pow(realPos / (touch_field.clientWidth * 0.4), 2);
+            if (realPos<0) t_mover_speed = -Math.pow(realPos / (touch_field.clientWidth * 0.4), 2);
+        }
+    }
+});
+
+document.addEventListener("touchstart", (event) => {
+    touch_field.style.display = "block";
+
+    shift_x = (document.documentElement.clientWidth - field.clientWidth) / 2;
+    shift_y = (document.documentElement.clientHeight - field.clientHeight) / 2;
+
+    start_pos_x = event.changedTouches[0].clientX;
+    touch_field.style.left = start_pos_x - shift_x + "px";
+    pointer.style.left = "50%";
+    touch_field.style.top = event.changedTouches[0].clientY - shift_y + "px";
+
+    t_mover = setInterval(touch_mover, 1);
+});
+
+document.addEventListener("touchend", (event) => {
+    clearInterval(t_mover);
+    touch_field.style.display = "none";
+});
+
+function touch_mover() {
+    if ((player_Xpos < 5 && t_mover_speed > 0) || (t_mover_speed < 0 && 95 < player_Xpos) || (player_Xpos > 5 && player_Xpos < 95)) {
+        player_Xpos += t_mover_speed / 6;
+        player.style.left = player_Xpos + "%";
+    }
+}
+
 
 /* Обработка кнопки рестарта */
 retryButton.addEventListener("click", (event) => {
