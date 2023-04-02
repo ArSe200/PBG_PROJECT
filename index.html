@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Polish border guard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Экран загрузки -->
+    <div id="loading_background"></div>
+    <div id="loading_screen">
+        <img id="logo" alt src="images/LOGO.png">
+        <div id="loading_bar_container">
+            <p>START</p>
+            <div id="loading_bar">
+                <img id="loading_img" alt src="images/migrant_loader.png">
+            </div>
+        </div>
+    </div>
+
+    <div id="tree_box" rows_number=0></div>
+
+    <section id="main_field">
+        <!-- Основное поле -->
+        <section id="game">
+            <img id="player" alt src="skins/skin_0.png">
+            <div id="border_line"></div>
+        </section>
+
+        <div id="scoreboard">
+            <div id="scoreboard_main" class="scoreboard_text">Score: 0</div>
+            <div id="scoreboard_high" class="scoreboard_text">High Score: 0</div>
+            <div id="moneyDisplay" class="scoreboard_text">Money: 0</div>
+        </div>
+
+        <div id="game_over_screen">
+            <img id="game_over" alt src="images/GO.png">
+            <div id="retry_button_frame"><img id="retry_button" alt src="images/RB.png" width="100%"></div>
+            <img id="skin_shop" alt src="images/Swat.png">
+        </div>
+
+        <!-- Магазин / Гуssи Санкт-питербургер -->
+        <section id="shop_buttons">
+            <div class="skin" , id="moneyDisplay2Conteiner">
+                <div id="moneyDisplay2">0</div>
+                <img class="zloty" alt src="images/coin.png">
+            </div>
+            <div class="skin" , id="skin_n_0">
+                <img class="skin_preview" alt src="images/skin_preview/skin_0_p.png">
+                Policeman
+            </div>
+            <div class="skin" , id="skin_n_1">
+                <img class="skin_preview" alt src="images/skin_preview/skin_1_p.png">
+                Military man
+                <div class="price" id="price_1">: 1000</div>
+                <img class="zloty" alt src="images/coin.png">
+            </div>
+            <div class="skin" , id="skin_n_2">
+                <img class="skin_preview" alt src="images/skin_preview/skin_2_p.png">
+                SWAT
+                <div class="price" id="price_2">: 2000</div>
+                <img class="zloty" alt src="images/coin.png">
+            </div>
+        </section>
+
+        <!-- Джойстик -->
+        <div id="Touch_field">
+            <div id="Touch_point"></div>
+        </div>
+    </section>
+
+
+    <!-- Запуск скриптов -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="loading.js"></script>
+    <script src="game.js"></script>
+    <script src="loading.js"></script>
+
+    <script src="tree_generator.js"></script>
+</body>
+
+</html>
