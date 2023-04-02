@@ -9,12 +9,14 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+
+  background: url("images/grass_block_top.png");
 }
 
-@media (max-aspect-ratio:16/7){
-  #main_field  {
-      width: 100vw;
-      height: auto;
+@media (max-aspect-ratio:16/7) {
+  #main_field {
+    width: 100vw;
+    height: auto;
   }
 
   .scoreboard_text {
@@ -61,14 +63,13 @@ body {
   #main_field  {
       width: auto;
       height: 100%;
-  }
 
   .scoreboard_text {
     font-size: 6.86vh;
     -webkit-text-stroke: 0.114vh #000;
-    text-stroke: 0.114vh #000;    
+    text-stroke: 0.114vh #000;
   }
-  
+
   #scoreboard_main {
     font-size: 13.71vh;
     margin-bottom: 6.857vh;
@@ -102,7 +103,6 @@ body {
     text-stroke: 0.457vh #000; 
   }
 }
-
 
 /* Экран загрузки */
 #loading_background{
@@ -172,8 +172,32 @@ body {
   transform: translateX(-50%);
 }
 
+/* Деревья */
+#tree_box {
+  z-index: 3;
+  top: auto;
+  bottom: 50vh;
+  left: 0;
+  width: 100vw;
+  height: auto;
+  aspect-ratio: 10/4;
+  display: grid;
+  position: fixed;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.tree {
+  width: 100%;
+  height: auto;
+  margin: -40%;
+}
+
 /* Игровое поле */
-#main_field  {
+#main_field {
   position: fixed;
   top: 0;
   left: 0;
@@ -184,16 +208,8 @@ body {
 }
 
 #game {
-  background: url("images/grass_block_top.png");
   width: 100%;
   height: 100%;
-}
-
-.tree {
-  z-index: 2;
-  position: absolute;
-  width: 100px;
-  transform: translate(-50%, -50%);
 }
 
 #border_line {
@@ -237,7 +253,7 @@ body {
   transform: translateX(-50%);
 }
 
-#scoreboard{
+#scoreboard {
   /* background-color: rgb(0, 255, 183); */
   position: absolute;
   display: grid;
@@ -257,7 +273,7 @@ body {
   align-self: center;
   text-align: right;
   color: rgb(252, 22, 31);
-} 
+}
 
 /* Экран "Game Over" */
 
@@ -330,7 +346,7 @@ body {
   justify-content: center;
 }
 
-.zloty{
+.zloty {
   pointer-events: none;
   width: 5%;
   margin-left: 2%;
