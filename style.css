@@ -63,6 +63,7 @@ body {
   #main_field  {
       width: auto;
       height: 100%;
+  }
 
   .scoreboard_text {
     font-size: 6.86vh;
