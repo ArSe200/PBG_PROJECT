@@ -1,6 +1,3 @@
-let load_progress = 0;
-let load_timer;
-
 const click_sound = new Audio("audio/click.mp3");
 
 /* Подключение DOM обьектов к скрипту*/
@@ -24,19 +21,19 @@ document.querySelector("#skin_n_"+selected_skin).classList.add("choosedSkin");
 function loading() {
     load_progress++;
 
-    if (load_progress < 80) {
+    if (load_progress <= 100) {
         loadingBar.style.width = load_progress + "%";
-        loadingIMG.style.left = load_progress + 10 + "%";
     }
 
     /* Отображение кнопки */
-    if (load_progress > 80) {
+    if (load_progress > 100) {
         clearInterval(load_timer);
         startBTN.style.display = "block";
     } 
 }
 
-load_timer = setInterval(loading, 30);
+let load_progress = 0;
+let load_timer = setInterval(loading, 30);
 
 start_button.addEventListener("click", (event) => {
     click_sound.play()

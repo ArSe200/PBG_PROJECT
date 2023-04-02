@@ -25,6 +25,7 @@ body {
     text-stroke: 0.1vw #000;
   }
 
+  /* Магазин */
   .skin {
     font-size: 4vw;
     -webkit-text-stroke: 0.1vw #000;
@@ -36,6 +37,24 @@ body {
     -webkit-text-stroke: 0.1vw #000;
     text-stroke: 0.1vw #000;
     gap: 1vw;
+  }
+
+  /* Экран загрузки */
+  #loading_screen {
+    width: 100vw;
+    height: auto;
+  }
+
+  #start_button {
+    font-size: 8vw;
+    -webkit-text-stroke: 0.15vw #000;
+    text-stroke: 0.15vw #000; 
+  }
+
+  #logo {
+    font-size: 8vw;
+    -webkit-text-stroke: 0.15vh #000;
+    text-stroke: 0.15vh #000; 
   }
 }
 
@@ -58,6 +77,7 @@ body {
     text-stroke: 0.229vh #000;
   }
 
+  /* Магазин */
   .skin {
     font-size: 9.143vh;
     -webkit-text-stroke: 0.229vh #000;
@@ -68,40 +88,8 @@ body {
   #shop_buttons {
     gap: 2.29vh;
   }
-}
 
-@media (min-aspect-ratio:16/7){
-  #main_field  {
-      width: auto;
-      height: 100%;
-  }
-
-  .skin {
-    font-size: 7vh;
-    -webkit-text-stroke: 0.15vh #000;
-    text-stroke: 0.15vh #000;
-  }
-}
-
-@media (max-aspect-ratio:16/7) {
-  #loading_screen {
-    width: 100vw;
-    height: auto;
-  }
-
-  #start_button {
-    font-size: 8vw;
-    -webkit-text-stroke: 0.15vw #000;
-    text-stroke: 0.15vw #000; 
-  }
-
-  #logo {
-    font-size: 8vw;
-    -webkit-text-stroke: 0.15vh #000;
-    text-stroke: 0.15vh #000; 
-  }
-}
-@media (min-aspect-ratio:16/7) {
+  /* Экран загрузки */
   #loading_screen {
     width: auto;
     height: 100vh;
@@ -112,6 +100,7 @@ body {
     -webkit-text-stroke: 0.15vh #000;
     text-stroke: 0.15vh #000; 
   }
+
   #logo {
     font-size: 8vh;
     -webkit-text-stroke: 0.15vh #000;
@@ -122,17 +111,17 @@ body {
 
 /* Экран загрузки */
 #loading_screen {
-  z-index: 9997;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  position: absolute;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(174, 243, 14);
+  position: fixed;
   top: 0;
   left: 0;
 }
 
 #start_button {
-  z-index: 9996;
+  z-index: 9999;
   min-width: 40%;
   text-align: center;
   background-color: greenyellow;
@@ -145,7 +134,7 @@ body {
 }
 
 #logo {
-  z-index: 9997;
+  z-index: 9999;
   position: absolute;
   width: 80%;
   top: 20%;
@@ -153,23 +142,30 @@ body {
   transform: translate(-50%, -50%);
 }
 
-#loading_bar {
-  z-index: 9998;
-  width: 0%;
-  height: 20%;
-  background-color: greenyellow;
+#loading_bar_container{
+  background-color: red;
+  z-index: 9999;
+  width: 80%;
+  height: auto;
+  aspect-ratio: 10/2;
   position: absolute;
   top: 50%;
   left: 10%;
 }
 
+#loading_bar {
+  width: 0%;
+  height: 100%;
+  background-color: greenyellow;
+}
+
 #loading_img {
-  z-index: 9999;
   position: absolute;
-  height: 15%;
-  top: 60%;
-  left: 10%;
-  transform: translate(-50%, -50%);
+  height: 110%;
+  width: auto;
+  top: -3%;
+  right: 0;
+  transform: translateX(50%);
 }
 
 /* Игровое поле */
