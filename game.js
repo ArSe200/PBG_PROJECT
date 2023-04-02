@@ -86,7 +86,7 @@ function generateEmigrant() {
         let is_green = Math.random() > 0.9 ? true : false;
 
         /* Создание нового эмигранта */
-        emigrants.push(new Emigrant(Math.random() * 95 + "%", 0, is_green));
+        emigrants.push(new Emigrant(Math.random() * 95 + "%", -10, is_green));
     }
 }
 
@@ -218,6 +218,7 @@ let shift_y = 0;
 let t_mover = 0;
 let t_mover_speed = 0;
 
+/* Обработка тачскрина при движении пальцем */
 document.addEventListener("touchmove", (event) => {
     if (!isStop) {
         let xPos = event.changedTouches[0].clientX;
@@ -239,6 +240,7 @@ document.addEventListener("touchmove", (event) => {
     }
 });
 
+/* Обработка тачскрина при касании */
 document.addEventListener("touchstart", (event) => {
     touch_field.style.display = "block";
 
@@ -253,14 +255,16 @@ document.addEventListener("touchstart", (event) => {
     t_mover = setInterval(touch_mover, 1);
 });
 
+/* Обработка тачскрина при отпускании */
 document.addEventListener("touchend", (event) => {
     clearInterval(t_mover);
     touch_field.style.display = "none";
 });
 
+/* Функция отображения ползунка тасчкрина */
 function touch_mover() {
     if ((player_Xpos < 5 && t_mover_speed > 0) || (t_mover_speed < 0 && 95 < player_Xpos) || (player_Xpos > 5 && player_Xpos < 95)) {
-        player_Xpos += t_mover_speed / 6;
+        player_Xpos += t_mover_speed / 3;
         player.style.left = player_Xpos + "%";
     }
 }
