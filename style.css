@@ -83,6 +83,43 @@ body {
   }
 }
 
+@media (max-aspect-ratio:16/7) {
+  #loading_screen {
+    width: 100vw;
+    height: auto;
+  }
+
+  #start_button {
+    font-size: 8vw;
+    -webkit-text-stroke: 0.15vw #000;
+    text-stroke: 0.15vw #000; 
+  }
+
+  #logo {
+    font-size: 8vw;
+    -webkit-text-stroke: 0.15vh #000;
+    text-stroke: 0.15vh #000; 
+  }
+}
+@media (min-aspect-ratio:16/7) {
+  #loading_screen {
+    width: auto;
+    height: 100vh;
+  }
+
+  #start_button {
+    font-size: 8vh;
+    -webkit-text-stroke: 0.15vh #000;
+    text-stroke: 0.15vh #000; 
+  }
+  #logo {
+    font-size: 8vh;
+    -webkit-text-stroke: 0.15vh #000;
+    text-stroke: 0.15vh #000; 
+  }
+}
+
+
 /* Экран загрузки */
 #loading_screen {
   z-index: 9997;
@@ -101,7 +138,6 @@ body {
   background-color: greenyellow;
   color: white;
   position: absolute;
-  font-size: 8vw;
   text-shadow: 2px 2px 1px black;
   top: 75%;
   left: 30%;
@@ -110,8 +146,8 @@ body {
 
 #logo {
   z-index: 9997;
-  width: 80%;
   position: absolute;
+  width: 80%;
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -129,8 +165,8 @@ body {
 
 #loading_img {
   z-index: 9999;
-  width: 10%;
   position: absolute;
+  height: 15%;
   top: 60%;
   left: 10%;
   transform: translate(-50%, -50%);
