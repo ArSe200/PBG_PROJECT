@@ -41,20 +41,14 @@ body {
 
   /* Экран загрузки */
   #loading_screen {
-    width: 100vw;
-    height: auto;
+    width: 100%;
+    height: 100%;
   }
 
-  #start_button {
+  #loading_bar_container > p {
     font-size: 8vw;
-    -webkit-text-stroke: 0.15vw #000;
-    text-stroke: 0.15vw #000; 
-  }
-
-  #logo {
-    font-size: 8vw;
-    -webkit-text-stroke: 0.15vh #000;
-    text-stroke: 0.15vh #000; 
+    -webkit-text-stroke: 0.2vw #000;
+    text-stroke: 0.2vw #000; 
   }
 }
 
@@ -91,72 +85,77 @@ body {
 
   /* Экран загрузки */
   #loading_screen {
+    z-index: 9999;
     width: auto;
-    height: 100vh;
+    height: 100%;
+    aspect-ratio: 16/7;
   }
 
-  #start_button {
-    font-size: 8vh;
-    -webkit-text-stroke: 0.15vh #000;
-    text-stroke: 0.15vh #000; 
-  }
-
-  #logo {
-    font-size: 8vh;
-    -webkit-text-stroke: 0.15vh #000;
-    text-stroke: 0.15vh #000; 
+  #loading_bar_container > p {
+    font-size: 18.29vh;
+    -webkit-text-stroke: 0.457vh #000;
+    text-stroke: 0.457vh #000; 
   }
 }
 
 
 /* Экран загрузки */
-#loading_screen {
+#loading_background{
   z-index: 9999;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(174, 243, 14);
   position: fixed;
   top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: wheat;
 }
 
-#start_button {
+#loading_screen {
   z-index: 9999;
-  min-width: 40%;
-  text-align: center;
-  background-color: greenyellow;
-  color: white;
-  position: absolute;
-  text-shadow: 2px 2px 1px black;
-  top: 75%;
-  left: 30%;
-  display: none;
+  background-color: wheat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
 }
 
 #logo {
   z-index: 9999;
   position: absolute;
   width: 80%;
-  top: 20%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 #loading_bar_container{
-  background-color: red;
   z-index: 9999;
+  position: absolute;
+  top: 70%;
+  left: 10%;
   width: 80%;
   height: auto;
-  aspect-ratio: 10/2;
+  aspect-ratio: 10/1;
+  background-color: greenyellow;
+}
+
+#loading_bar_container > p{
+  color: wheat;
   position: absolute;
+  margin: auto;
   top: 50%;
-  left: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #loading_bar {
-  width: 0%;
+  position: absolute;
+  right: 0;
+  width: 100%;
   height: 100%;
-  background-color: greenyellow;
+  background-color: wheat;
 }
 
 #loading_img {
@@ -164,8 +163,8 @@ body {
   height: 110%;
   width: auto;
   top: -3%;
-  right: 0;
-  transform: translateX(50%);
+  left: 0;
+  transform: translateX(-50%);
 }
 
 /* Игровое поле */

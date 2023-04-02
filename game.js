@@ -240,22 +240,26 @@ document.addEventListener("touchmove", (event) => {
 });
 
 document.addEventListener("touchstart", (event) => {
-    touch_field.style.display = "block";
+    if (!isStop) {
+        touch_field.style.display = "block";
 
-    shift_x = (document.documentElement.clientWidth - field.clientWidth) / 2;
-    shift_y = (document.documentElement.clientHeight - field.clientHeight) / 2;
+        shift_x = (document.documentElement.clientWidth - field.clientWidth) / 2;
+        shift_y = (document.documentElement.clientHeight - field.clientHeight) / 2;
 
-    start_pos_x = event.changedTouches[0].clientX;
-    touch_field.style.left = start_pos_x - shift_x + "px";
-    pointer.style.left = "50%";
-    touch_field.style.top = event.changedTouches[0].clientY - shift_y + "px";
+        start_pos_x = event.changedTouches[0].clientX;
+        touch_field.style.left = start_pos_x - shift_x + "px";
+        pointer.style.left = "50%";
+        touch_field.style.top = event.changedTouches[0].clientY - shift_y + "px";
 
-    t_mover = setInterval(touch_mover, 1);
+        t_mover = setInterval(touch_mover, 1);
+    }
 });
 
 document.addEventListener("touchend", (event) => {
-    clearInterval(t_mover);
-    touch_field.style.display = "none";
+    if (!isStop) {
+        clearInterval(t_mover);
+        touch_field.style.display = "none";
+    }
 });
 
 function touch_mover() {
