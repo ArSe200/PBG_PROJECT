@@ -1,5 +1,6 @@
 const click_sound = new Audio("audio/click.mp3");
 const loadingBar = document.querySelector("#loading_bar");
+const skin_object = document.querySelector("#player");
 isStop = true;
 
 /* Загрузка скина */
