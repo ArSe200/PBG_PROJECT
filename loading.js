@@ -3,6 +3,114 @@ const loadingBar = document.querySelector("#loading_bar");
 const skin_object = document.querySelector("#player");
 isStop = true;
 
+/* Изменение в соответствии с устройством */
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    const style = document.createElement('style');
+
+    style.innerHTML = `
+        @media (min-aspect-ratio:16/7){
+            #main_field  {
+                width: auto;
+                height: 100%;
+            }
+        
+            .scoreboard_text {
+                font-size: 6.86vh;
+                -webkit-text-stroke: 0.114vh #000;
+                text-stroke: 0.114vh #000;
+            }
+        
+            #scoreboard_main {
+                font-size: 13.71vh;
+                margin-bottom: 6.857vh;
+                -webkit-text-stroke: 0.229vh #000;
+                text-stroke: 0.229vh #000;
+            }
+        
+            /* Магазин */
+            .skin {
+                font-size: 7vh;
+                -webkit-text-stroke: 0.15vh #000;
+                text-stroke: 0.15vh #000;
+                box-shadow: 0 0 3.429vh 0.457vh black;
+            }
+        
+            #shop_buttons {
+                gap: 2.29vh;
+            }
+        
+            /* Экран загрузки */
+            #loading_screen {
+                z-index: 9999;
+                width: auto;
+                height: 100%;
+                aspect-ratio: 16/7;
+            }
+        
+            #loading_bar_container > p {
+                font-size: 18.29vh;
+                -webkit-text-stroke: 0.457vh #000;
+                text-stroke: 0.457vh #000; 
+            }
+      }
+    `;
+
+    document.head.appendChild(style);
+}
+else {
+    const style = document.createElement('style');
+
+    style.innerHTML = `
+        @media (min-aspect-ratio:16/7){
+            #main_field  {
+                width: auto;
+                height: 100%;
+            }
+        
+            .scoreboard_text {
+                font-size: 6.86vh;
+                -webkit-text-stroke: 0.114vh #000;
+                text-stroke: 0.114vh #000;
+            }
+        
+            #scoreboard_main {
+                font-size: 13.71vh;
+                margin-bottom: 6.857vh;
+                -webkit-text-stroke: 0.229vh #000;
+                text-stroke: 0.229vh #000;
+            }
+        
+            /* Магазин */
+            .skin {
+                font-size: 9.143vh;
+                -webkit-text-stroke: 0.229vh #000;
+                text-stroke: 0.229vh #000;
+                box-shadow: 0 0 3.429vh 0.457vh black;
+            }
+        
+            #shop_buttons {
+                gap: 2.29vh;
+            }
+        
+            /* Экран загрузки */
+            #loading_screen {
+                z-index: 9999;
+                width: auto;
+                height: 100vh;
+                aspect-ratio: 16/7;
+            }
+        
+            #loading_bar_container > p {
+                font-size: 18.29vh;
+                -webkit-text-stroke: 0.457vh #000;
+                text-stroke: 0.457vh #000; 
+            }
+      }
+    `;
+
+    document.head.appendChild(style);
+}
+
 /* Загрузка скина */
 let selected_skin = localStorage.getItem("skin");
 if (selected_skin == null || selected_skin<0 || selected_skin>2) {

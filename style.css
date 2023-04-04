@@ -59,52 +59,6 @@ body {
   }
 }
 
-@media (min-aspect-ratio:16/7){
-  #main_field  {
-      width: auto;
-      height: 100%;
-  }
-
-  .scoreboard_text {
-    font-size: 6.86vh;
-    -webkit-text-stroke: 0.114vh #000;
-    text-stroke: 0.114vh #000;
-  }
-
-  #scoreboard_main {
-    font-size: 13.71vh;
-    margin-bottom: 6.857vh;
-    -webkit-text-stroke: 0.229vh #000;
-    text-stroke: 0.229vh #000;
-  }
-
-  /* Магазин */
-  .skin {
-    font-size: 7vh;
-    -webkit-text-stroke: 0.15vh #000;
-    text-stroke: 0.15vh #000;
-    box-shadow: 0 0 3.429vh 0.457vh black;
-  }
-
-  #shop_buttons {
-    gap: 2.29vh;
-  }
-
-  /* Экран загрузки */
-  #loading_screen {
-    z-index: 9999;
-    width: auto;
-    height: 100%;
-    aspect-ratio: 16/7;
-  }
-
-  #loading_bar_container > p {
-    font-size: 18.29vh;
-    -webkit-text-stroke: 0.457vh #000;
-    text-stroke: 0.457vh #000; 
-  }
-}
-
 /* Экран загрузки */
 #loading_background{
   z-index: 9999;
