@@ -3,7 +3,7 @@ const loadingBar = document.querySelector("#loading_bar");
 const skin_object = document.querySelector("#player");
 isStop = true;
 
-/* Изменение в соответствии с устройством */
+/* Зміна відповідно до пристрою */
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     const style = document.createElement('style');
 
@@ -111,7 +111,7 @@ else {
     document.head.appendChild(style);
 }
 
-/* Загрузка скина */
+/* Завантаження скіна */
 let selected_skin = localStorage.getItem("skin");
 if (selected_skin == null || selected_skin<0 || selected_skin>2) {
     selected_skin = 0;
@@ -121,7 +121,7 @@ document.querySelector("#player").setAttribute("src", `skins/skin_${selected_ski
 document.querySelector("#skin_n_"+selected_skin).classList.add("choosedSkin");
 
 
-/* Функция обработки экрана загрузки */
+/* Функція обробки екрану завантаження */
 function loading() {
     load_progress++;
 
@@ -129,17 +129,17 @@ function loading() {
         loadingBar.style.width = 100-load_progress + "%";
     }
 
-    /* Отображение кнопки */
+    /* Відображення кнопки */
     if (load_progress > 100) {
         clearInterval(load_timer);
         document.querySelector("#loading_bar_container").addEventListener("click", (event) => {
             click_sound.play()
 
-            /* Отключение экрана загрузки */
+            /* Вимкнути екран завантаження */
             document.querySelector("#loading_screen").style.display = "none";
             document.querySelector("#loading_background").style.display = "none";
 
-            /* Запуск генератора эмигрантов */
+            /* Запуск генератора емігрантів */
             isStop = false;
             generator = setInterval(generateEmigrant, 2000);
             mover = setInterval(moveEmigrants, 15);

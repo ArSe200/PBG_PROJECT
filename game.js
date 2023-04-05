@@ -1,4 +1,4 @@
-/* Подключение DOM обьектов к скрипту*/
+/* Підключення DOM об'єктів до скрипту*/
 const field = document.querySelector("#main_field");
 const game = document.querySelector("#game");
 const player = document.querySelector("#player");
@@ -13,11 +13,11 @@ const moneyDisplay2 = document.querySelector("#moneyDisplay2");
 const pointer = document.querySelector("#Touch_point");
 const touch_field = document.querySelector("#Touch_field")
 
-/* Добавление звуков */
+/* Додавання звуків */
 const score_sound = new Audio("audio/score.mp3");
 const lose_sound = new Audio("audio/lose.mp3");
 
-/* Объявление переменных */
+/* Оголошення змінних */
 let emigrants = [];
 let score = 0;
 let isStop = false;
@@ -29,7 +29,7 @@ let price_list = {
 }
 let player_Xpos = 0;
 
-/* Обьявление класса Emigrant */
+/* Оголошення класу Emigrant */
 class Emigrant {
     constructor(x, y, type) {
         this.x = x
@@ -44,13 +44,13 @@ class Emigrant {
     }
 
     MoveEmigrant() {
-        /* Сдвиг на 0.1% вниз */
+        /* Зрушення на 0.1% вниз */
         this.y += 0.1;
         this.emigrant.style.top = this.y + "%";
     }
 }
 
-/* Загрузка лучшего результата из хранилищя браузера */
+/* Завантаження кращого результату зі сховища браузера */
 let high_score = Number(localStorage.getItem("score"));
 if (high_score == null) {
     high_score = 0;
@@ -58,7 +58,7 @@ if (high_score == null) {
 }
 highScoreDisplay.textContent = "High Score: " + high_score;
 
-/* Загрузка кол-ва монет */
+/* Завантаження кількох монет */
 let money = Number(localStorage.getItem("money"));
 if (money == null) {
     money = 0;
@@ -66,7 +66,7 @@ if (money == null) {
 }
 moneyDisplay.textContent = "Money: " + money;
 
-/* Загрузка купленных скинов */
+/* Завантаження куплених скінів */
 let skins = localStorage.getItem("skins");
 if (skins == null) {
     skins = "0";
@@ -77,40 +77,40 @@ document.querySelectorAll('.skin').forEach((but, i) => {
     if (i > 1 && jQuery.inArray(String(i - 1), skins) != -1) document.querySelector("#price_" + (i - 1)).remove();
 });
 
-/* Генератор эмигрантов */
+/* Генератор емігрантів */
 function generateEmigrant() {
     if (!document.hidden) {
-        /* Обределение типа эмигранта 
-        (шанс на зеленого - 10%) */
+        /* Визначення типу емігранта
+        (Шанс на зеленого – 10%) */
 
         let is_green = Math.random() > 0.9 ? true : false;
 
-        /* Создание нового эмигранта */
+        /* Створення нового емігранта */
         emigrants.push(new Emigrant(Math.random() * 95 + "%", -10, is_green));
     }
 }
 
-/* Добавление обработчика движения эмигранта */
+/* Додавання обробника руху емігранта */
 function moveEmigrants() {
     if (!document.hidden) {
         for (let en = 0; en < emigrants.length; en++) {
             let emigrant = emigrants[en];
-            /* Если игра завершена, то эмигрант удаляется */
+            /* Якщо гра завершена, то емігрант видаляється */
             if (isStop) {
                 game.removeChild(emigrant.emigrant);
             }
             else {
                 emigrant.MoveEmigrant();
 
-                /* Проверка попадания спецназа по эмигранту */
+                /* Перевірка влучення спецназу з емігранту */
                 if (checkCollision(emigrant.emigrant, player)) {
                     if (!emigrant.type) {
-                        /* Увеличение счета */
+                        /* Збільшення рахунку */
                         add_score(1);
                         clearInterval(mover);
                         mover = setInterval(moveEmigrants, 15 - 15 * score / (score + 100));
 
-                        /* Удаление эмигранта */
+                        /* Вилучення емігранта */
                         game.removeChild(emigrant.emigrant);
                         emigrants.shift();
                     }
@@ -119,18 +119,18 @@ function moveEmigrants() {
                     }
                 }
 
-                /* Проверка касания эмигрантом нижней границы */
+                /* Перевірка торкання емігрантом нижнього кордону */
                 if (emigrant.y >= 100) {
                     if (!emigrant.type) {
                         stop_game();
                     }
                     else {
-                        /* Увеличение счета */
+                        /* Збільшення рахунку */
                         add_score(1);
                         clearInterval(mover);
                         mover = setInterval(moveEmigrants, 15 - 15 * score / (score + 100));
 
-                        /* Удаление эмигранта */
+                        /* Вилучення емігранта */
                         game.removeChild(emigrant.emigrant);
                         emigrants.shift();
                     }
@@ -140,7 +140,7 @@ function moveEmigrants() {
     }
 }
 
-/* Начисление очков */
+/* Нарахування балів */
 function add_score(amount) {
     score += amount;
 
@@ -158,7 +158,7 @@ function add_score(amount) {
 
     score_sound.play()
 
-    /* Начисление монет */
+    /* Нарахування монет */
     money += 1;
 
     localStorage.setItem("money", money);
@@ -166,9 +166,9 @@ function add_score(amount) {
     moneyDisplay.textContent = "Money: " + money;
 }
 
-/* Обработка поражения */
+/* Обробка поразки */
 function stop_game() {
-    /* Остановка игры */
+    /* Зупинка гри */
     isStop = true;
     clearInterval(generator);
     clearInterval(mover);
@@ -184,13 +184,13 @@ function stop_game() {
     borderLine.style.display = "none";
 }
 
-/* Проверка касания эмигрантом сетки */
+/* Перевірка торкання емігрантом сітки */
 function checkCollision(a, b) {
-    /* Получение хитбоксов */
+    /* Отримання хітбоксів */
     const aRect = a.getBoundingClientRect();
     const bRect = b.getBoundingClientRect();
 
-    /* Сравнение хитбоксов и возврат результата */
+    /* Порівняння хітбоксів та повернення результату */
     return !(
         aRect.bottom < bRect.top ||
         aRect.top > bRect.bottom ||
@@ -199,7 +199,7 @@ function checkCollision(a, b) {
     );
 }
 
-/* Обработка движений мыши */
+/* Обробка рухів миші */
 field.addEventListener("mousemove", (event) => {
     if (!isStop && !event.sourceCapabilities.firesTouchEvents) {
         let filed_width = field.clientWidth;
@@ -211,14 +211,14 @@ field.addEventListener("mousemove", (event) => {
     }
 });
 
-/* Обработка тачскрина */
+/* Обробка тачскріну */
 let start_pos_x;
 let shift_x = 0;
 let shift_y = 0;
 let t_mover = 0;
 let t_mover_speed = 0;
 
-/* Обработка тачскрина при движении пальцем */
+/* Обробка тачскрину при русі пальцем */
 document.addEventListener("touchmove", (event) => {
     if (!isStop) {
         let xPos = event.changedTouches[0].clientX;
@@ -240,7 +240,7 @@ document.addEventListener("touchmove", (event) => {
     }
 });
 
-/* Обработка тачскрина при касании */
+/* Обробка тачскрину при торканні */
 document.addEventListener("touchstart", (event) => {
     if (!isStop) {
         touch_field.style.display = "block";
@@ -257,7 +257,7 @@ document.addEventListener("touchstart", (event) => {
     }
 });
 
-/* Обработка тачскрина при отпускании */
+/* Обробка тачскрину при відпусканні */
 document.addEventListener("touchend", (event) => {
     if (!isStop) {
         clearInterval(t_mover);
@@ -265,7 +265,7 @@ document.addEventListener("touchend", (event) => {
     }
 });
 
-/* Функция отображения ползунка тасчкрина */
+/* Функція відображення повзунка тачскріна */
 function touch_mover() {
     if ((player_Xpos < 5 && t_mover_speed > 0) || (t_mover_speed < 0 && 95 < player_Xpos) || (player_Xpos > 5 && player_Xpos < 95)) {
         player_Xpos += t_mover_speed / 3;
@@ -274,13 +274,13 @@ function touch_mover() {
 }
 
 
-/* Обработка кнопки рестарта */
+/* Обробка кнопки рестарту */
 retryButton.addEventListener("click", (event) => {
     isStop = false;
     score = 0;
     click_sound.play()
 
-    /* Сворачивание экрана "Game Over" */
+    /* Згортання екрана "Game Over" */
     scoreDisplay.textContent = "Score: " + score;
     gameOver.style.display = "none";
     retryButton.style.display = "none";
@@ -288,16 +288,16 @@ retryButton.addEventListener("click", (event) => {
     skinShop.style.display = "none";
     borderLine.style.display = "block";
 
-    /* Перезапуск генератора эмигрантов */
+    /* Перезапуск генератора емігрантів */
     generator = setInterval(generateEmigrant, 2000);
     mover = setInterval(moveEmigrants, 15)
 });
 
-/* Обработка кнопки магазина */
+/* Обробка кнопки магазину */
 skinShop.addEventListener("click", (event) => {
     click_sound.play()
 
-    /* Сворачивание игры */
+    /* Згортання гри */
     gameOver.style.display = "none";
     retryButton.style.display = "none";
     skinShop.style.display = "none";
@@ -305,13 +305,13 @@ skinShop.addEventListener("click", (event) => {
     highScoreDisplay.style.display = "none";
     moneyDisplay.style.display = "none";
 
-    /* Открытие магазина */
+    /* Відкриття магазину */
     $('.skin').css('display', 'flex');
     moneyDisplay2.textContent = money;
 
 });
 
-/* Обработка кнопок в магазине */
+/* Обробка кнопок у магазині */
 function skin_buttons_handler(event) {
     let but_id = event.srcElement.id;
     but_id = but_id[but_id.length - 1]
@@ -323,12 +323,12 @@ function skin_buttons_handler(event) {
         document.querySelector("#skin_n_" + selected_skin_old).classList.remove("choosedSkin");
         document.querySelector("#skin_n_" + selected_skin).classList.add("choosedSkin");
 
-        /* Закрытие магазина */
+        /* Закриття магазину */
         $('.skin').css('display', 'none');
 
         click_sound.play()
 
-        /* Разворачивание игры */
+        /* Розгортання гри */
         gameOver.style.display = "block";
         retryButton.style.display = "block";
         skinShop.style.display = "block";

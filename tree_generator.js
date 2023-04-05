@@ -36,7 +36,6 @@ function tree_generator(r, c) {
             new_tree.style.zIndex = 3+Math.floor(Math.random() * 4);
             let size = 30+Math.floor(Math.random() * 41)
             new_tree.style.width = 100+size+"%";
-            /* new_tree.style.margin = -size/2+"%"; */
             new_tree.classList.add("tree");
             tree_box.appendChild(new_tree);
         }
