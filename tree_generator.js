@@ -3,7 +3,7 @@ let tree_r_n;
 
 
 function resize_handler() {
-    let box_raw_height = parseFloat($("#main_field").css("margin-top"));
+    let box_raw_height = parseFloat(window.getComputedStyle(field).getPropertyValue("margin-top"));
     let new_r_n = Math.ceil(10 * box_raw_height / window.innerWidth);
     tree_box.style.bottom = (window.innerHeight - box_raw_height)+"px";
     if (new_r_n != tree_r_n) {
