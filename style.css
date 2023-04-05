@@ -269,7 +269,7 @@ body {
 /* Магазин */
 #shop_buttons {
   position: absolute;
-  display: none;
+  display: grid;
   width: 50%;
   height: 60%;
   top: 20%;
@@ -277,7 +277,7 @@ body {
 }
 
 .skin {
-  display: flex;
+  display: none;
   background-color: rgb(252, 22, 31);
   align-self: center;
   align-items: center;

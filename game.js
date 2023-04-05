@@ -11,8 +11,7 @@ const borderLine = document.querySelector("#border_line");
 const moneyDisplay = document.querySelector("#moneyDisplay");
 const moneyDisplay2 = document.querySelector("#moneyDisplay2");
 const pointer = document.querySelector("#Touch_point");
-const touch_field = document.querySelector("#Touch_field");
-const shop = document.querySelector("#shop_buttons");
+const touch_field = document.querySelector("#Touch_field")
 
 /* Додавання звуків */
 const score_sound = new Audio("audio/score.mp3");
@@ -307,7 +306,7 @@ skinShop.addEventListener("click", (event) => {
     moneyDisplay.style.display = "none";
 
     /* Відкриття магазину */
-    shop.style.display = "grid";
+    $('.skin').css('display', 'flex');
     moneyDisplay2.textContent = money;
 
 });
@@ -325,7 +324,7 @@ function skin_buttons_handler(event) {
         document.querySelector("#skin_n_" + selected_skin).classList.add("choosedSkin");
 
         /* Закриття магазину */
-        shop.style.display = "none";
+        $('.skin').css('display', 'none');
 
         click_sound.play()
 
